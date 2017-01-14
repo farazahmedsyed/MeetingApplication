@@ -103,7 +103,7 @@ System.out.println("There..");
 	  }
       
   }
-  public  void register() {
+  public  String register() {
     try {
       // initialize the transport
     	httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -118,34 +118,41 @@ System.out.println("Authorization Successful");
       client = new Calendar.Builder(httpTransport, JSON_FACTORY, credential)
           .setApplicationName(APPLICATION_NAME).build();
 
-      System.out.println("Success! Now add code here.");
-
-      Event event = new Event();
-
-      event.setSummary("Appointment");
-      event.setLocation("Somewhere");
-
-      ArrayList<EventAttendee> attendees = new ArrayList<EventAttendee>();
-      attendees.add(new EventAttendee().setEmail("tobeg3oogle@gmail.com"));
-      // ...
-      event.setAttendees(attendees);
-
-      Date startDate = new Date();
-      Date endDate = new Date(startDate.getTime() + 3600000);
-      DateTime start = new DateTime(startDate, TimeZone.getTimeZone("UTC"));
-      event.setStart(new EventDateTime().setDateTime(start));
-      DateTime end = new DateTime(endDate, TimeZone.getTimeZone("UTC"));
-      event.setEnd(new EventDateTime().setDateTime(end));
-
-      Event createdEvent = client.events().insert("primary", event).execute();
-
-      System.out.println(createdEvent.getId());
-
-    } catch (IOException e) {
-      System.err.println(e.getMessage());
-    } catch (Throwable t) {
-      t.printStackTrace();
+      return "Success! Now add code here.";
+    } catch (Exception e) {
+      return e.getMessage();
     }
-    System.exit(1);
+    
   }
+ public String addEvent()
+ {
+	 try {
+			 
+     Event event = new Event();
+
+     event.setSummary("Appointment");
+     event.setLocation("Somewhere");
+
+     ArrayList<EventAttendee> attendees = new ArrayList<EventAttendee>();
+     attendees.add(new EventAttendee().setEmail("syed.faraz.ahmed.pk@gmail.com"));
+     // ...
+     event.setAttendees(attendees);
+
+     Date startDate = new Date();
+     Date endDate = new Date(startDate.getTime() + 3600000);
+     DateTime start = new DateTime(startDate, TimeZone.getTimeZone("UTC"));
+     event.setStart(new EventDateTime().setDateTime(start));
+     DateTime end = new DateTime(endDate, TimeZone.getTimeZone("UTC"));
+     event.setEnd(new EventDateTime().setDateTime(end));
+
+     Event createdEvent;
+		createdEvent = client.events().insert("primary", event).execute();
+	
+     return createdEvent.getId();
+	 } catch (IOException e) {
+return e.getMessage();
+}
+
+	 
+ }
 }

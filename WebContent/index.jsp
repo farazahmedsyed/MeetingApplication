@@ -5,6 +5,7 @@
 
 <h1>MeetingApplication</h1>
 <br/>
-<a href="./register"><button>Register</button></a>
+<a href="./calendar?op=reg"><button>Register</button></a>
+<a href="./calendar?op=addEvent"><button>AddEvent</button></a>
 </body>
 </html>
