@@ -92,7 +92,7 @@ System.out.println("There..");
     return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver.Builder().setPort(1111).build()).authorize("user");
    }
   catch (Exception e)
-   {System.out.println(e.getMessage());System.console().writer().println(e.getMessage());return null;}
+   {System.err.println(e.getMessage());return null;}
   }
 
   public String getDetails()
