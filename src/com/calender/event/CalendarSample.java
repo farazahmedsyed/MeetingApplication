@@ -17,6 +17,8 @@ import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
+
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -56,9 +58,9 @@ public class CalendarSample {
   private static Calendar client;
 
   /** Authorizes the installed application to access user's protected data. */
-  private static Credential authorize()  {
+  private  Credential authorize()  {
     // load client secrets
-   try{System.err.println("Custom 0");
+   try{System.err.println("Custom 0: "+CalendarSample.class.toGenericString());
 	   GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,  
         new InputStreamReader(CalendarSample.class.getResourceAsStream("client_secret.json")));
 	   System.err.println("Custom 1");
