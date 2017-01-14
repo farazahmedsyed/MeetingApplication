@@ -58,7 +58,9 @@ public class CalendarSample {
   /** Authorizes the installed application to access user's protected data. */
   private static Credential authorize() throws Exception {
     // load client secrets
-    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
+   try{
+	   GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
+   
         new InputStreamReader(CalendarSample.class.getResourceAsStream("client_secret.json")));
     if (clientSecrets.getDetails().getClientId().startsWith("Enter") ||
         clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
@@ -88,6 +90,9 @@ System.out.println("There..");
         .build();
     // authorize
     return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver.Builder().setPort(1111).build()).authorize("user");
+   }
+  catch (Exception e)
+   {return null;}
   }
 
   public String getDetails()
@@ -113,6 +118,7 @@ System.out.println(httpTransport.toString());
        
       // authorization
       Credential credential = authorize();
+      if(credential == null){return "Exception";}
 System.out.println("Authorization Successful");
       // set up global Calendar instance
       client = new Calendar.Builder(httpTransport, JSON_FACTORY, credential)
