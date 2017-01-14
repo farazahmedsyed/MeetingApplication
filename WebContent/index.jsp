@@ -5,7 +5,13 @@
 
 <h1>MeetingApplication</h1>
 <br/>
-<a href="./calendar?op=reg"><button>Register</button></a>
-<a href="./calendar?op=addEvent"><button>AddEvent</button></a>
+<form action="./calendar" method="post">
+<input type="hidden" value="reg" name="op" />
+<input type="submit" value="Register">
+</form>
+<form action="./calendar" method="post">
+<input type="hidden" value="addEvent" name="op" />
+<input type="submit" value="AddEvent">
+</form>
 </body>
 </html>
