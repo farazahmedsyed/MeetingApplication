@@ -69,7 +69,7 @@ public class CalendarSample {
           + "you downloaded from the Quickstart tool or manually enter your Client ID and Secret "
           + "from https://code.google.com/apis/console/?api=calendar#project:380094479037 "
           + "into src/main/resources/client_secrets.json");
-      System.exit(1);
+     return null;
     }
     System.out.println("There..");
 
@@ -92,7 +92,7 @@ System.out.println("There..");
     return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver.Builder().setPort(1111).build()).authorize("user");
    }
   catch (Exception e)
-   {return null;}
+   {System.out.println(e.getMessage());return null;}
   }
 
   public String getDetails()
@@ -133,7 +133,9 @@ System.out.println("Authorization Successful");
  public String addEvent()
  {
 	 try {
-			 
+		 if(client == null){register();}
+		 if(client == null){return "Exception";}
+				 
      Event event = new Event();
 
      event.setSummary("Appointment");
