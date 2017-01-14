@@ -35,7 +35,7 @@ public class CalendarSample {
    * Be sure to specify the name of your application. If the application name is {@code null} or
    * blank, the application will log a warning. Suggested format is "MyCompany-ProductName/1.0".
    */
-  private static final String APPLICATION_NAME = "Dev-MeetingApplication/1.0";
+  private static final String APPLICATION_NAME = "MeetingApplication/1.0";
 
   /** Directory to store user credentials. */
   private static final java.io.File DATA_STORE_DIR =
@@ -86,20 +86,31 @@ System.out.println("There..");
         httpTransport, JSON_FACTORY, clientSecrets, scopes)
         .setDataStoreFactory(dataStoreFactory)
         .build();
-   //  LocalServerReceiver lr=new LocalServerReceiver.Builder().setPort(1111).build();
-  //  System.out.println(lr.getRedirectUri());
     // authorize
     return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver.Builder().setPort(1111).build()).authorize("user");
   }
 
-  public static void main(String[] args) {
+  public String getDetails()
+  {
+	  LocalServerReceiver lr=new LocalServerReceiver.Builder().build();
+      try
+      {
+		return "Redirect Uri: "+lr.getRedirectUri()+"---host: "+lr.getHost()+"---Port: "+lr.getPort();
+	  } 
+      catch (IOException e) 
+      {
+		return e.getMessage();
+	  }
+      
+  }
+  public  void register() {
     try {
       // initialize the transport
-      httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+    	httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 System.out.println(httpTransport.toString());
       // initialize the data store factory
       dataStoreFactory = new FileDataStoreFactory(DATA_STORE_DIR);
-
+       
       // authorization
       Credential credential = authorize();
 System.out.println("Authorization Successful");

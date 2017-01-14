@@ -4,7 +4,7 @@
 <body>
 
 <h1>MeetingApplication</h1>
-<p>api</p>
-
+<br/>
+<a href="./register"><button>Register</button></a>
 </body>
 </html>
