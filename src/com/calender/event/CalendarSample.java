@@ -71,7 +71,7 @@ public class CalendarSample {
           + "into src/main/resources/client_secrets.json");
      return null;
     }
-    System.out.println("There..");
+    System.err.println("1");
 
     // Set up authorization code flow.
     // Ask for only the permissions you need. Asking for more permissions will
@@ -88,7 +88,8 @@ System.out.println("There..");
         httpTransport, JSON_FACTORY, clientSecrets, scopes)
         .setDataStoreFactory(dataStoreFactory)
         .build();
-    // authorize
+    System.err.println("2");
+// authorize
     return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver.Builder().setPort(1111).build()).authorize("user");
    }
   catch (Exception e)
