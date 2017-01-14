@@ -58,9 +58,9 @@ public class CalendarSample {
   /** Authorizes the installed application to access user's protected data. */
   private static Credential authorize() throws Exception {
     // load client secrets
-   try{
+   try{System.err.println("Custom 0");
 	   GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,  
-        new InputStreamReader(CalendarSample.class.getResourceAsStream("client_secret.json")));
+        new InputStreamReader(CalendarSample.class.getResourceAsStream("/client_secret.json")));
 	   System.err.println("Custom 1");
     if (clientSecrets.getDetails().getClientId().startsWith("Enter") ||
         clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
