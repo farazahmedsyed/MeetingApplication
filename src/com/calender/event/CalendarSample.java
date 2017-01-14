@@ -1,10 +1,12 @@
 package com.calender.event;
 
+import com.google.api.client.auth.oauth2.ClientParametersAuthentication;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets.Details;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
@@ -24,6 +26,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
 
@@ -58,14 +61,25 @@ public class CalendarSample {
   private static Calendar client;
 
   /** Authorizes the installed application to access user's protected data. */
-  private  Credential authorize()  {
+  @SuppressWarnings({ "unchecked", "unused", "rawtypes" })
+private  Credential authorize()  {
     // load client secrets
    try{System.err.println("Custom 0: "+CalendarSample.class.toGenericString());
-   InputStreamReader ir =  new InputStreamReader(CalendarSample.class.getResourceAsStream("./client_secret.json"));
+  // InputStreamReader ir =  new InputStreamReader(CalendarSample.class.getResourceAsStream("./client_secret.json"));
    System.err.println("Custom ");
-    
-   GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, ir );
-	   System.err.println("Custom 1");
+   Details dt = new Details();
+  dt.setClientId("514374966528-n3def1d1754oqu40qd629m15k86q4ahb.apps.googleusercontent.com");
+  dt.setAuthUri("https://accounts.google.com/o/oauth2/auth");
+  dt.setClientSecret("iqpPmt8CrMdsTiB0gRCH65kr");
+  
+List <String> re = new <String>ArrayList();
+  re.add("https://meetingapplication.herokuapp.com/");
+  dt.setRedirectUris(re);
+  dt.setTokenUri("https://accounts.google.com/o/oauth2/token");
+  GoogleClientSecrets clientSecrets =new  GoogleClientSecrets();
+  
+   clientSecrets.setInstalled(dt) ;
+   System.err.println("Custom 1");
     if (clientSecrets.getDetails().getClientId().startsWith("Enter") ||
         clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
       System.err.println(
