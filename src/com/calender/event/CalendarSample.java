@@ -61,7 +61,7 @@ public class CalendarSample {
   private  Credential authorize()  {
     // load client secrets
    try{System.err.println("Custom 0: "+CalendarSample.class.toGenericString());
-   InputStreamReader ir =  new InputStreamReader(getClass().getResourceAsStream("client_secret.json"));
+   InputStreamReader ir =  new InputStreamReader(getClass().getResourceAsStream("./client_secret.json"));
    System.err.println("Custom ");
     
    GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, ir );
