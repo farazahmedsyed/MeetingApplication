@@ -92,7 +92,7 @@ System.out.println("There..");
 
   public String getDetails()
   {
-	  LocalServerReceiver lr=new LocalServerReceiver.Builder().build();
+	  LocalServerReceiver lr=new LocalServerReceiver.Builder().setPort(1111).build();
       try
       {
 		return "Redirect Uri: "+lr.getRedirectUri()+"---host: "+lr.getHost()+"---Port: "+lr.getPort();
