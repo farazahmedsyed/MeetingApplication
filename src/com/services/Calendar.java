@@ -28,6 +28,9 @@ public void doPost(HttpServletRequest request,HttpServletResponse response)
 	case ("addEvent"):
 		writeString = calendar.addEvent();
 	    break;
+	case ("getDetails"):
+		writeString = calendar.getDetails();
+	    break;
 	default:
 		writeString="Operation Not Recognized";
 	}
