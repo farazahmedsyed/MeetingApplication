@@ -1,1 +1,1 @@
-web:    java -jar target/MeetingApplication.war
+web:    java -jar target/MeetingApplication-0.0.1-SNAPSHOT.war
