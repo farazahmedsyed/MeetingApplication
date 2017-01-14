@@ -59,19 +59,19 @@ public class CalendarSample {
   private static Credential authorize() throws Exception {
     // load client secrets
    try{
-	   GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
-   
+	   GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,  
         new InputStreamReader(CalendarSample.class.getResourceAsStream("client_secret.json")));
+	   System.err.println("Custom 1");
     if (clientSecrets.getDetails().getClientId().startsWith("Enter") ||
         clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
-      System.out.println(
+      System.err.println(
           "Overwrite the src/main/resources/client_secrets.json file with the client secrets file "
           + "you downloaded from the Quickstart tool or manually enter your Client ID and Secret "
           + "from https://code.google.com/apis/console/?api=calendar#project:380094479037 "
           + "into src/main/resources/client_secrets.json");
      return null;
     }
-    System.err.println("1");
+    System.err.println("Custom 2");
 
     // Set up authorization code flow.
     // Ask for only the permissions you need. Asking for more permissions will
@@ -88,12 +88,12 @@ System.out.println("There..");
         httpTransport, JSON_FACTORY, clientSecrets, scopes)
         .setDataStoreFactory(dataStoreFactory)
         .build();
-    System.err.println("2");
+    System.err.println("Custom 3");
 // authorize
     return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver.Builder().setPort(1111).build()).authorize("user");
    }
   catch (Exception e)
-   {System.err.println(e.getMessage());return null;}
+   {System.err.println("Custom Exception: "+e.getMessage());return null;}
   }
 
   public String getDetails()
